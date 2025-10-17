@@ -10,7 +10,7 @@ import { BsFillMicMuteFill } from "react-icons/bs";
 import { FaMicrophone } from "react-icons/fa";
 import { FaVideoSlash } from "react-icons/fa";
 import { FaVideo } from "react-icons/fa";
-const socket = io("http://localhost:8000");
+const socket = io("https://rb-code-editor.onrender.com");
 const App = () => {
 
   const [joined, setJoined] = useState(false);
