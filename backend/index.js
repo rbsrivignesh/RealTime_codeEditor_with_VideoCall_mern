@@ -168,7 +168,7 @@ const port = process.env.PORT || 8000;
 //     res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"))
 // })
 
-// app.get("/", (req, res) => { res.send("Api is working fine") })
+app.get("/", (req, res) => { res.send("Api is working fine") })
 
 server.listen(port, () => {
     console.log(`server running on port : ${port}`)
