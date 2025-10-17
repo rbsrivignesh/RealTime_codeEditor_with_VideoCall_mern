@@ -160,15 +160,15 @@ io.on('connection', (socket) => {
 
 const port = process.env.PORT || 8000;
 
-const __dirname = path.resolve();
-console.log(path.join(__dirname, "/frontend/dist"))
-console.log(path.join(__dirname, "frontend", "dist", "index.html"))
-app.use(express.static(path.join(__dirname, "/frontend/dist")));
-app.get("/{*any}", (req, res) => {
-    res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"))
-})
+// const __dirname = path.resolve();
+// console.log(path.join(__dirname, "/frontend/dist"))
+// console.log(path.join(__dirname, "frontend", "dist", "index.html"))
+// app.use(express.static(path.join(__dirname, "/frontend/dist")));
+// app.get("/{*any}", (req, res) => {
+//     res.sendFile(path.join(__dirname, "frontend", "dist", "index.html"))
+// })
 
-// app.get("/", (req, res) => { res.send("Api is working fine") })
+app.get("/", (req, res) => { res.send("Api is working fine") })
 
 server.listen(port, () => {
     console.log(`server running on port : ${port}`)
