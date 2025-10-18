@@ -122,7 +122,7 @@ const App = () => {
     await pc.setLocalDescription(offer);
 
     // console.log({ from: userName, to: user });
-   
+
     // console.log({ from: userName, to: user })
     socket.emit("offer", { from: userName, to: user, offer: pc.localDescription });
   }
