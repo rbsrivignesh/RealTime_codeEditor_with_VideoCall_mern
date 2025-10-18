@@ -10,7 +10,7 @@ import { BsFillMicMuteFill } from "react-icons/bs";
 import { FaMicrophone } from "react-icons/fa";
 import { FaVideoSlash } from "react-icons/fa";
 import { FaVideo } from "react-icons/fa";
-const url = import.meta.env.NODE_ENV == "production" ? "https://realtime-codeeditor-with-videocall-mern.onrender.com" : "http://localhost:8000";
+const url = import.meta.env.MODE == "production" ? "https://realtime-codeeditor-with-videocall-mern.onrender.com" : "http://localhost:8000";
 const socket = io(url);
 const App = () => {
 
