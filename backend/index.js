@@ -68,7 +68,7 @@ io.on('connection', (socket) => {
     })
 
     socket.on('codeChange', ({ roomId, code }) => {
-        console.log({ roomId, code });
+        // console.log({ roomId, code });
         if (rooms.has(roomId)) {
             rooms.get(roomId).code = code;
         }
@@ -143,6 +143,7 @@ io.on('connection', (socket) => {
     })
 
     socket.on("call-ended", (caller) => {
+        console.log(caller);
         io.to(allUsers[caller[0]]?.id).emit("call-ended", caller);
         io.to(allUsers[caller[1]]?.id).emit("call-ended", caller);
     })

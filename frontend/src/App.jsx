@@ -10,7 +10,8 @@ import { BsFillMicMuteFill } from "react-icons/bs";
 import { FaMicrophone } from "react-icons/fa";
 import { FaVideoSlash } from "react-icons/fa";
 import { FaVideo } from "react-icons/fa";
-const socket = io("https://rb-code-editor.onrender.com");
+const url = import.meta.env.NODE_ENV == "production" ? "https://realtime-codeeditor-with-videocall-mern.onrender.com" : "http://localhost:8000";
+const socket = io(url);
 const App = () => {
 
   const [joined, setJoined] = useState(false);
@@ -103,8 +104,8 @@ const App = () => {
     });
     peerConnection.current.onicecandidate = function (event) {
       if (event.candidate) {
-        console.log(called.current)
-        console.log(receiver.current)
+        // console.log(called.current)
+        // console.log(receiver.current)
         if (userName === called.current) {
 
           socket.emit("icecandidate", { candidate: event.candidate, user: receiver.current });
@@ -112,18 +113,17 @@ const App = () => {
         else { socket.emit("icecandidate", { candidate: event.candidate, user: called.current }); }
       }
     }
-    console.log(user);
+    // console.log(user);
 
     const pc = peerConnection.current;
-    console.log(pc);
+    // console.log(pc);
     const offer = await pc.createOffer();
-    console.log(offer);
+    // console.log(offer);
     await pc.setLocalDescription(offer);
 
-    console.log({ from: userName, to: user });
-    const call = [userName, user];
-    setCaller(call);
-    console.log({ from: userName, to: user })
+    // console.log({ from: userName, to: user });
+   
+    // console.log({ from: userName, to: user })
     socket.emit("offer", { from: userName, to: user, offer: pc.localDescription });
   }
 
@@ -177,9 +177,9 @@ const App = () => {
       await pc.setLocalDescription(answer);
       socket.emit("answer", { from, to, answer: pc.localDescription });
 
-      const call = [from, to];
-      setCaller(call);
-      console.log(caller);
+      // const call = [from, to];
+      // setCaller(call);
+      // console.log(caller);
     });
 
 
@@ -205,7 +205,7 @@ const App = () => {
 
     socket.on("answer", async ({ from, to, answer }) => {
       const pc = peerConnection.current;
-      console.log(answer)
+      // console.log(answer)
       caller.current = from;
       receiver.current = to;
 
@@ -214,14 +214,14 @@ const App = () => {
 
       // endCallBtn.style.display = 'block';
       socket.emit("end-call", { from, to });
-      const call = [from, to];
-      setCaller(call);
-      console.log(caller);
+      // const call = [from, to];
+      // setCaller(call);
+      // console.log(caller);
 
     })
 
     socket.on("icecandidate", async (candidate) => {
-      console.log({ candidate });
+      // console.log({ candidate });
       const pc = peerConnection.current;
       await pc.addIceCandidate(new RTCIceCandidate(candidate));
     })
